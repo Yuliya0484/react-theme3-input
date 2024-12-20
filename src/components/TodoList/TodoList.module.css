@@ -1,0 +1,13 @@
+.box {
+  margin: 50px;
+  padding: 50px;
+}
+
+.input {
+  padding: 12px;
+  border: 2px solid black;
+  border-radius: 12px;
+  box-shadow: 0 0 6px 6px lightcoral;
+  margin-right: 16px;
+  min-width: 220px;
+}

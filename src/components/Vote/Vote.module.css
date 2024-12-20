@@ -1,0 +1,30 @@
+.vote_box {
+  background-color: mediumslateblue;
+}
+.title {
+  padding: 16px;
+  text-shadow: 4px 1px whitesmoke;
+}
+.vote_list {
+  display: flex;
+  gap: 14px;
+  padding: 20px;
+}
+.vote_item {
+  border: 1px solid black;
+  box-shadow: 0 0 2px 2px white;
+  padding: 8px;
+  border-radius: 4px;
+}
+.button_box {
+  display: flex;
+  gap: 32px;
+  padding: 20px;
+}
+.vote_button {
+  border: 1px solid black;
+  box-shadow: 0 0 2px 2px white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}

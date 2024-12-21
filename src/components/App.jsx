@@ -11,6 +11,9 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const onRegister = (data) => {
+    console.log(data);
+  };
   return (
     <>
       <div>
@@ -19,7 +22,7 @@ const App = () => {
       </div>
       <div>
         <h1>Controlled Form</h1>
-        <ControlledForm />
+        <ControlledForm onRegister={onRegister} />
       </div>
       <div>
         <button onClick={openModal}>Open Modal</button>

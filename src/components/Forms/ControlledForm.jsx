@@ -1,11 +1,19 @@
 import { useState } from "react";
 import s from "./Forms.module.css";
-const INITIAL_STATE = { username: "", email: "", password: "" };
-const ControlledForm = () => {
+const INITIAL_STATE = {
+  username: "",
+  email: "",
+  course: "",
+  level: "junior",
+  details: "",
+  isTermsAccepted: false,
+};
+const ControlledForm = ({ onRegister }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    onRegister(formData);
     setFormData(INITIAL_STATE);
   };
   //так робити не бажано))) - це приклад
@@ -37,9 +45,10 @@ const ControlledForm = () => {
   //   });
   // };
   const handleChangeInput = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      return setFormData((prev) => ({ ...prev, [name]: !prev[name] }));
+    }
     setFormData({ ...formData, [name]: value });
   };
   return (
@@ -66,16 +75,76 @@ const ControlledForm = () => {
           />
         </label>
         <label className={s.label}>
-          <span>Password: </span>
-          <input
+          <span>Course: </span>
+          <select
             className={s.input}
-            name="password"
-            type="password"
-            value={formData.password}
-            onClick={handleChangeInput}
-          />
+            name="course"
+            type="text"
+            value={formData.course}
+            onChange={handleChangeInput}
+          >
+            <option value="backend">Backend</option>
+            <option value="frontend">Frontend</option>
+            <option value="fullstack">Fullstack</option>
+            <option value="devOps">DevOps</option>
+          </select>
         </label>
-        <button className={s.button} type="submit">
+        <div>
+          <label>
+            <input
+              onChange={handleChangeInput}
+              checked={formData.level === "junior"}
+              type="radio"
+              value="junior"
+              name="level"
+            />
+            <span>Junior</span>
+          </label>
+          <label>
+            <input
+              onChange={handleChangeInput}
+              checked={formData.level === "middle"}
+              type="radio"
+              value="middle"
+              name="level"
+            />
+            <span>Middle</span>
+          </label>
+          <label>
+            <input
+              onChange={handleChangeInput}
+              checked={formData.level === "senior"}
+              type="radio"
+              value="senior"
+              name="level"
+            />
+            <span>Senior</span>
+          </label>
+        </div>
+        <label className={s.label}>
+          <span>Details: </span>
+          <textarea
+            className={s.input}
+            name="details"
+            value={formData.details}
+            onChange={handleChangeInput}
+          ></textarea>
+        </label>
+        <label>
+          {" "}
+          <input
+            type="checkbox"
+            name="isTermsAccepted"
+            checked={formData.isTermsAccepted}
+            onChange={handleChangeInput}
+          />
+          <span>All terms and rules accepted!</span>
+        </label>
+        <button
+          disabled={formData.isTermsAccepted}
+          className={s.button}
+          type="submit"
+        >
           Enter
         </button>
       </form>

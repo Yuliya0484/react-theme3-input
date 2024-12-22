@@ -6,6 +6,7 @@ import Modal from "./Modal/Modal.jsx";
 import Vote from "./Vote/Vote.jsx";
 import Forms from "./Forms/Forms.jsx";
 import ControlledForm from "./Forms/ControlledForm.jsx";
+import FormRegister from "./Forms/Formik.jsx";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,10 @@ const App = () => {
       <div>
         <h1>Controlled Form</h1>
         <ControlledForm onRegister={onRegister} />
+      </div>
+      <div>
+        <h1>Form Formik</h1>
+        <FormRegister />
       </div>
       <div>
         <button onClick={openModal}>Open Modal</button>
